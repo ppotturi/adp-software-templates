@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: payments-portal
+  description: Everything related to payments
+  tags:
+    - portal
+    - api
+spec:
+  owner: fcp-payments
+  domain: payments

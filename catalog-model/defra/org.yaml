@@ -1,0 +1,30 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: defra
+  title: DEFRA
+  description: UK government department responsible for safeguarding our natural environment, supporting our food & farming industry, and sustaining a thriving rural economy.
+  links:
+    - url: https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs/
+      title: Website
+
+spec:
+  type: organization
+  profile:
+    displayName: DEFRA
+    email: info@example.com
+    picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
+  children: [fcp]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: example-groups
+  description: A collection of all Backstage example Groups
+spec:
+  targets:
+    - ./fcp.yaml
+    - ./fcp-payments.yaml
+    - ./fcp-grants.yaml
+    - ./fcp-documents.yaml
+    - ./fcp-vet-visits.yaml

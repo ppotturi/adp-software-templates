@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: example-templates
+  description: A collection of all Backstage example templates (org and external)
+spec:
+  targets:
+    - ./org-templates.yaml
+    # - ./external-templates.yaml

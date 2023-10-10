@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: fcp-vet-visits
+  description: FCP Vet Visits
+spec:
+  type: team
+  profile:
+    displayName: FCP Vet Visits
+    email: team-c@example.com
+    picture: https://avatars.dicebear.com/api/identicon/team-c@example.com.svg?background=%23fff&margin=25
+  parent: fcp
+  children: []

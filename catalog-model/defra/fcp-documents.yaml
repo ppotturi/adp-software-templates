@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: fcp-documents
+  description: FCP Documents
+spec:
+  type: team
+  profile:
+    displayName: FCP Documents
+    email: team-d@example.com
+    picture: https://avatars.dicebear.com/api/identicon/team-d@example.com.svg?background=%23fff&margin=25
+  parent: fcp
+  children: []

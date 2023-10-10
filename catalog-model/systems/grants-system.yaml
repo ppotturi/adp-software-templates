@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: grants-portal
+  description: Everything related to grants
+  tags:
+    - portal
+    - api
+spec:
+  owner: fcp-grants
+  domain: grants

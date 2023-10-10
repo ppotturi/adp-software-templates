@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: org-templates
+  description: A collection of all Backstage org templates
+spec:
+  targets:
+    - ../templates/ado-scaffolder/template.yaml
+    - ../templates/dotnet-template/template.yaml
+    - ../templates/create-empty-project/template.yaml

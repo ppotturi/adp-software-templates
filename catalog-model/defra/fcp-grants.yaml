@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: fcp-grants
+  description: FCP Grants
+spec:
+  type: team
+  profile:
+    displayName: FCP Grants
+    email: team-b@example.com
+    picture: https://avatars.dicebear.com/api/identicon/team-b@example.com.svg?background=%23fff&margin=25
+  parent: fcp
+  children: []
