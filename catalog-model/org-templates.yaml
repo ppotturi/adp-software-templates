@@ -5,6 +5,4 @@ metadata:
   description: A collection of all Backstage org templates
 spec:
   targets:
-    - ../templates/ado-scaffolder/template.yaml
-    - ../templates/dotnet-template/template.yaml
-    - ../templates/create-empty-project/template.yaml
+    - ../templates/ffc-template-node/template.yaml
