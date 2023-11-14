@@ -7,5 +7,7 @@ metadata:
     - postgresql
 spec:
   type: database
-  owner: fcp-payments
+  owner: "group:default/fcp-payments"
   system: ffc-demo-service
+  dependsOn:
+    - ffc-demo-database-server

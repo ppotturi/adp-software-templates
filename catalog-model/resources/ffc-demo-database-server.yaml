@@ -1,10 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: ffc-demo-web-redis
-  title: Redis cache
-  description: Redis cache for the ffc-demo-web service
+  name: ffc-demo-database-server
+  description: Demo service database server
+  tags:
+    - postgresql
 spec:
-  type: cache
+  type: database-server
   owner: "group:default/fcp-payments"
   system: ffc-demo-service

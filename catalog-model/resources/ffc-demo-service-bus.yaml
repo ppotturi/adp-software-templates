@@ -7,7 +7,7 @@ metadata:
     - azure-service-bus
 spec:
   type: message-service
-  owner: fcp-payments
+  owner: "group:default/fcp-payments"
   system: ffc-demo-service
 ---
 apiVersion: backstage.io/v1alpha1
@@ -20,9 +20,10 @@ metadata:
     - queue
 spec:
   type: message-queue
-  owner: fcp-payments
+  owner: "group:default/fcp-payments"
   system: ffc-demo-service
-  dependsOn: ffc-demo-service-bus
+  dependsOn: 
+    - ffc-demo-service-bus
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -34,9 +35,10 @@ metadata:
     - queue
 spec:
   type: message-queue
-  owner: fcp-payments
+  owner: "group:default/fcp-payments"
   system: ffc-demo-service
-  dependsOn: ffc-demo-service-bus
+  dependsOn:
+    - ffc-demo-service-bus
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -48,9 +50,10 @@ metadata:
     - topic
 spec:
   type: message-topic
-  owner: fcp-payments
+  owner: "group:default/fcp-payments"
   system: ffc-demo-service
-  dependsOn: ffc-demo-service-bus
+  dependsOn:
+    - ffc-demo-service-bus
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -62,6 +65,7 @@ metadata:
     - topic
 spec:
   type: message-topic
-  owner: fcp-payments
+  owner: "group:default/fcp-payments"
   system: ffc-demo-service
-  dependsOn: ffc-demo-service-bus
+  dependsOn:
+    - ffc-demo-service-bus

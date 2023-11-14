@@ -6,5 +6,5 @@ metadata:
   tags:
     - ffc
 spec:
-  owner: fcp-payments
+  owner: "group:default/fcp-payments"
   domain: payments
