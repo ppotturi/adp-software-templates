@@ -10,4 +10,4 @@ spec:
   owner: "group:default/fcp-payments"
   system: ffc-demo-service
   dependsOn:
-    - ffc-demo-database-server
+    - - "resource:default/ffc-demo-database-server"

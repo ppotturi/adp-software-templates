@@ -23,7 +23,7 @@ spec:
   owner: "group:default/fcp-payments"
   system: ffc-demo-service
   dependsOn: 
-    - ffc-demo-service-bus
+    - "resource:default/ffc-demo-service-bus"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -38,7 +38,7 @@ spec:
   owner: "group:default/fcp-payments"
   system: ffc-demo-service
   dependsOn:
-    - ffc-demo-service-bus
+    - "resource:default/ffc-demo-service-bus"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -53,7 +53,7 @@ spec:
   owner: "group:default/fcp-payments"
   system: ffc-demo-service
   dependsOn:
-    - ffc-demo-service-bus
+    - "resource:default/ffc-demo-service-bus"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -68,4 +68,4 @@ spec:
   owner: "group:default/fcp-payments"
   system: ffc-demo-service
   dependsOn:
-    - ffc-demo-service-bus
+    - "resource:default/ffc-demo-service-bus"

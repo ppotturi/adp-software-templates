@@ -6,6 +6,6 @@ metadata:
   tags:
     - postgresql
 spec:
-  type: database-server
+  type: databaseServer
   owner: "group:default/fcp-payments"
   system: ffc-demo-service
