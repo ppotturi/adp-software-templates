@@ -7,3 +7,4 @@ spec:
   targets:
     - ./systems/grants-system.yaml
     - ./systems/payments-system.yaml
+    - ./systems/ffc-demo-service-system.yaml

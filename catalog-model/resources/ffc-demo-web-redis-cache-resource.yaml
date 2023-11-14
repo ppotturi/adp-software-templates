@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: ffc-demo-web-redis
+  title: Redis cache
+  description: Redis cache for the ffc-demo-web service
+spec:
+  type: cache
+  owner: fcp-payments
+  system: ffc-demo-service

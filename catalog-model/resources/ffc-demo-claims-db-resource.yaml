@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: ffc-demo-claims-db
+  description: Claims service database
+  tags:
+    - postgresql
+spec:
+  type: database
+  owner: fcp-payments
+  system: ffc-demo-service

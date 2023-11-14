@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ffc-demo-service
+  description: Exemplar services in the FFC platform
+  tags:
+    - ffc
+spec:
+  owner: fcp-payments
+  domain: payments

@@ -6,3 +6,7 @@ metadata:
 spec:
   targets:
     - ./resources/orders-db-resource.yaml
+    - ./resources/ffc-demo-web-redis-cache-resource.yaml
+    - ./resources/ffc-demo-claims-db-resource.yaml
+    - ./resources/ffc-demo-payments-db-resource.yaml
+    - ./resources/ffc-demo-service-bus.yaml
