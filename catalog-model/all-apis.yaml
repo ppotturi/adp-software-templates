@@ -4,5 +4,3 @@ metadata:
   name: example-apis
   description: A collection of all Backstage example APIs
 spec:
-  targets:
-    - ./apis/petstore-api.yaml

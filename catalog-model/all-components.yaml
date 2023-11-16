@@ -4,5 +4,3 @@ metadata:
   name: example-components
   description: A collection of all Backstage example components
 spec:
-  targets:
-    - ./components/petstore-component.yaml
