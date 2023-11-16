@@ -5,7 +5,5 @@ metadata:
   description: A collection of all Backstage example resources
 spec:
   targets:
-    - ./resources/ffc-demo-web-redis-cache-resource.yaml
-    - ./resources/ffc-demo-claims-db-resource.yaml
-    - ./resources/ffc-demo-payments-db-resource.yaml
+    - ./resources/ffc-demo-database-server.yaml
     - ./resources/ffc-demo-service-bus.yaml
