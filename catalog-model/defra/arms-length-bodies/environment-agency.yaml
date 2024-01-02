@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: environment-agency
+  title: Environment Agency (EA)
+  description: We work to create better places for people and wildlife, and support sustainable development.
+  links:
+    - url: https://www.gov.uk/government/organisations/environment-agency
+      title: Website
+spec:
+  type: arms-length-body
+  parent: defra
+  children: [extended-producer-responsibility]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: ea-programmes
+  description: Delivery programmes managed by the Environment Agency.
+spec:
+  targets:
+    - ../delivery-programmes/ea-extended-producer-responsibility.yaml

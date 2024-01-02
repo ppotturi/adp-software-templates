@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: extended-producer-responsibility
+  title: Extended Producer Responsibility (EPR)
+spec:
+  type: delivery-programme
+  parent: environment-agency
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: epr-projects
+  description: Projects delivered by the Extended Producer Responsibility programme.
+spec: {}

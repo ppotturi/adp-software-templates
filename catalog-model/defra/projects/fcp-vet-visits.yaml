@@ -7,7 +7,6 @@ spec:
   type: team
   profile:
     displayName: FCP Vet Visits
-    email: team-c@example.com
-    picture: https://avatars.dicebear.com/api/identicon/team-c@example.com.svg?background=%23fff&margin=25
-  parent: fcp
+    picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
+  parent: farming-countryside-programme
   children: []

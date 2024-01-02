@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: adpinfst01
+  description: ADP shared Storage Account
+  tags:
+    - storage-account
+spec:
+  type: storage-account
+  owner: "group:default/adp"
+  system: adp-shared-services

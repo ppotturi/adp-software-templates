@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: biodiversity-net-gains
+  title: Biodiversity & Net Gains (BNG)
+spec:
+  type: delivery-programme
+  parent: natural-england
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: bng-projects
+  description: Projects delivered by the Biodiversity & Net Gains programme.
+spec: {}

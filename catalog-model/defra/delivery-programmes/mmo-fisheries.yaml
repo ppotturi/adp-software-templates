@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: fisheries
+  title: Fisheries
+spec:
+  type: delivery-programme
+  parent: marine-management-organisation
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: fisheries-projects
+  description: Projects delivered by the Fisheries programme.
+spec: {}

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: ADPINFSB01
+  description: ADP shared Service Bus Namespace
+  tags:
+    - azure-service-bus
+spec:
+  type: service-bus-namespace
+  owner: "group:default/adp"
+  system: adp-shared-services

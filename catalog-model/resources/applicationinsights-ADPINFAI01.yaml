@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: ADPINFAI01
+  description: ADP shared Application Insights workspace
+  tags:
+    - application-insights
+    - monitoring
+spec:
+  type: application-insights
+  owner: "group:default/adp"
+  system: adp-shared-services

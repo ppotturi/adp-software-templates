@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: animal-plant-health-agency
+  title: Animal & Plant Health Agency (APHA)
+  description: We work to safeguard animal and plant health for the benefit of people, the environment and the economy.
+  links:
+    - url: https://www.gov.uk/government/organisations/animal-and-plant-health-agency
+      title: Website
+spec:
+  type: arms-length-body
+  parent: defra
+  children: [europe-trade]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: apha-programmes
+  description: Delivery programmes managed by the Animal & Plant Health Agency.
+spec:
+  targets:
+    - ../delivery-programmes/apha-europe-trade.yaml

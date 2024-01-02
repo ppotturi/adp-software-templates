@@ -1,9 +1,0 @@
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: fcp
-  description: Farming and Countryside Programme (FCP)
-spec:
-  type: programme
-  parent: defra
-  children: [fcp-grants, fcp-payments, fcp-documents, fcp-vet-visits]

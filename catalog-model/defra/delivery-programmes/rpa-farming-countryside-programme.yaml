@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: farming-countryside-programme
+  title: Farming & Countryside Programme (FCP)
+spec:
+  type: delivery-programme
+  parent: rural-payments-agency
+  children: [fcp-grants, fcp-payments, fcp-documents, fcp-vet-visits, fcp-demo]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: fcp-projects
+  description: Projects delivered by the Farming and Countryside Programme.
+spec:
+  targets:
+    - ../projects/fcp-adp.yaml
+    - ../projects/fcp-payments.yaml
+    - ../projects/fcp-grants.yaml
+    - ../projects/fcp-documents.yaml
+    - ../projects/fcp-vet-visits.yaml
+    - ../projects/fcp-demo.yaml

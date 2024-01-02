@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: defra
-  description: A collection of all Backstage example Groups
+  name: defra-org
+  description: References to organisation entities to display in the Catalog.
 spec:
   targets:
-    - ./defra/org.yaml
+    - ./defra/defra.yaml

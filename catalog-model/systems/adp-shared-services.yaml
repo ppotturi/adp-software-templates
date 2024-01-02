@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: adp-shared-services
+  description: Shared services in the ADP platform.
+spec:
+  owner: "group:default/adp"
+  

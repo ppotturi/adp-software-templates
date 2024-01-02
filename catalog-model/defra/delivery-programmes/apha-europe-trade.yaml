@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: europe-trade
+  title: Europe & Trade (EUTD)
+spec:
+  type: delivery-programme
+  parent: animal-plant-health-agency
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: eutd-projects
+  description: Projects delivered by the Europe & Trade programme.
+spec: {}

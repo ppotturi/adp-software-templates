@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: adpdbsps01
+  description: ADP shared PostgresSQL database flexible server
+  tags:
+    - postgresql
+spec:
+  type: database-server
+  owner: "group:default/adp"
+  system: adp-shared-services

@@ -1,8 +1,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: orgname-all
-  description: A collection of all Backstage example entities, excluding users, groups, and templates
+  name: baseline-catalog
+  description: |
+    References to shared baseline entities to display in the Catalog. The locations referenced will populate the catalog with APIs, domains, systems, and resources.
+    Organisation data is defined in the defra-org location.
 spec:
   targets:
     - ./all-apis.yaml

@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Domain
 metadata:
-  name: payments
+  name: fcp-payments
   description: Everything related to Payments
   title: FCP Payments
   links:
@@ -11,4 +11,4 @@ metadata:
       title: Domain Metrics Dashboard
       icon: dashboard
 spec:
-  owner: fcp-payments
+  owner: "group:default/fcp-payments"

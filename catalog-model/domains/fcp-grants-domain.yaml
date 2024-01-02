@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Domain
 metadata:
-  name: grants
+  name: fcp-grants
   description: Everything related to grants
   title: FCP Grants
   links:
@@ -11,4 +11,4 @@ metadata:
       title: Domain Metrics Dashboard
       icon: dashboard
 spec:
-  owner: fcp-grants
+  owner: "group:default/fcp-grants"

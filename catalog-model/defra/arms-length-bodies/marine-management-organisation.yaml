@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: marine-management-organisation
+  title: Marine Management Organisation (MMO)
+  description: The Marine Management Organisation (MMO) was created in 2009 by the Marine and Coastal Access Act.
+  links:
+    - url: https://www.gov.uk/government/organisations/rural-payments-agency
+      title: Website
+spec:
+  type: arms-length-body
+  parent: defra
+  children: [fisheries]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: mmo-programmes
+  description: Delivery programmes managed by the Marine Management Organisation.
+spec:
+  targets:
+    - ../delivery-programmes/mmo-fisheries.yaml

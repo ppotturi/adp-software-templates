@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: rural-payments-agency
+  title: Rural Payments Agency (RPA)
+  description: We pay out over £2 billion each year to support a thriving farming and food sector, supporting agricultural and rural communities to create a better place to live.
+  links:
+    - url: https://www.gov.uk/government/organisations/rural-payments-agency
+      title: Website
+spec:
+  type: arms-length-body
+  parent: defra
+  children: [farming-countryside-programme]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: rpa-programmes
+  description: Delivery programmes managed by the Rural Payments Agency.
+spec:
+  targets:
+    - ../delivery-programmes/rpa-farming-countryside-programme.yaml

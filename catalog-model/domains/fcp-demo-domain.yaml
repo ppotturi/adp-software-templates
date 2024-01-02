@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: fcp-demo
+  description: Everything within the FCP demo
+  title: FCP Demo
+spec:
+  owner: "group:default/fcp-demo"

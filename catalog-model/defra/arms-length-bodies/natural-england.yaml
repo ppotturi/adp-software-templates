@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: natural-england
+  title: Natural England (NE)
+  description: We're the government's adviser for the natural environment in England. We help to protect and restore our natural world.
+  links:
+    - url: https://www.gov.uk/government/organisations/natural-england
+      title: Website
+spec:
+  type: arms-length-body
+  parent: defra
+  children: [biodiversity-net-gains]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: ne-programmes
+  description: Delivery programmes managed by Natural England.
+spec:
+  targets:
+    - ../delivery-programmes/ne-biodiversity-net-gains.yaml

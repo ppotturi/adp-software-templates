@@ -12,19 +12,18 @@ spec:
   type: organization
   profile:
     displayName: DEFRA
-    email: info@example.com
     picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
-  children: [fcp]
+  children: [environment-agency, animal-plant-health-agency, rural-payments-agency, natural-england, marine-management-organisation]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: example-groups
-  description: A collection of all Backstage example Groups
+  name: defra-arms-length-bodies
+  description: Arms Length Bodies under the DEFRA organisation.
 spec:
   targets:
-    - ./fcp.yaml
-    - ./fcp-payments.yaml
-    - ./fcp-grants.yaml
-    - ./fcp-documents.yaml
-    - ./fcp-vet-visits.yaml
+    - ./arms-length-bodies/environment-agency.yaml
+    - ./arms-length-bodies/animal-plant-health-agency.yaml
+    - ./arms-length-bodies/rural-payments-agency.yaml
+    - ./arms-length-bodies/natural-england.yaml
+    - ./arms-length-bodies/marine-management-organisation.yaml

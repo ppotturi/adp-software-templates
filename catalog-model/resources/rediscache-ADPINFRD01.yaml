@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: ADPINFRD01
+  description: ADP shared Redis cache
+  tags:
+    - redis-cache
+spec:
+  type: redis-cache
+  owner: "group:default/adp"
+  system: adp-shared-services

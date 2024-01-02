@@ -1,6 +1,6 @@
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: example-apis
-  description: A collection of all Backstage example APIs
-spec:
+  name: all-apis
+  description: Common APIs defined as part of the baseline catalog.
+spec: {}
