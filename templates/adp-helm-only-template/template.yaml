@@ -15,10 +15,8 @@ spec:
       required:
         - component_id
         - description
-        - component_type
         - owner
         - component_lifecycle
-        - app_infra_service_bus_check
       properties:
         component_id:
           title: Component Name
@@ -134,7 +132,6 @@ spec:
           project_name: ${{ parameters.component_id }}
           ado_project_name: ${{ parameters.ado_project }}
           description: ${{ parameters.description }}
-          component_type: ${{ parameters.component_type}}
           owner: ${{ parameters.owner }}
           workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
           repo_url: ${{ parameters.repo_url }}
@@ -169,6 +166,37 @@ spec:
         repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
         orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
         owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+
+    - id: registerFluxService
+      name: Register Service in Flux config
+      action: http:backstage:request
+      input:
+        method: POST
+        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/services
+        headers:
+          content-type: "application/json"
+        body:
+          name: ${{ parameters.component_id }}
+          isFrontEnd: true
+          isHelmOnly: true
+          environments:
+            - snd3
+            - dev1
+            - tst1
+            - tst2
+            - pre1
+            - prd1
+          configVariables:
+            INGRESS_ENDPOINT: ${{ parameters.endpoint }}${{ parameters.defaultPath }}
+
+    - id: generateServiceManifests
+      name: Generate Service (Flux) Manifests
+      action: http:backstage:request
+      input:
+        method: POST
+        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/generate?serviceName=${{ parameters.component_id }}
+        headers:
+          content-type: "application/json"
 
     - id: configureAdoProject
       name: Configure Azure DevOps Project
