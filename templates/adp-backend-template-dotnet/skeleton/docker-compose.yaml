@@ -1,0 +1,10 @@
+services:
+  ${{ values.service_name }}:
+    build:
+      context: .
+      target: production
+    image: ${{ values.service_name }}
+    container_name: ${{ values.service_name }}
+    environment:
+      AppInsights__ConnectionString: ${APPINSIGHTS_CONNECTIONSTRING}
+      AppInsights__CloudRole: ${{ values.service_name }}-local

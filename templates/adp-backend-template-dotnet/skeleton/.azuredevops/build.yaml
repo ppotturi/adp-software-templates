@@ -1,0 +1,61 @@
+parameters:
+  - name: deployFromFeature
+    displayName: "Deploy from Feature Branch"
+    type: boolean
+    default: false
+  - name: deployConfigOnly
+    displayName: "Deploy App Config & Secrets Only"
+    type: boolean
+    default: false     
+pr:
+  branches:
+    include:
+      - main
+      - master
+  paths:
+    exclude:
+      - test-output/*
+      - bin/*
+      - obj/*
+  drafts: false
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+  paths:
+    exclude:
+      - test-output/*
+      - bin/*
+      - obj/*
+
+resources:
+  repositories:
+    - repository: DEFRA-ADPPipelineCommon
+      name: DEFRA/adp-pipeline-common
+      endpoint: DEFRA
+      type: github
+      ref: refs/heads/main
+
+extends:
+  template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
+  parameters:
+    programmeName: ""
+    teamName: "${{ values.project_name }}"
+    serviceName: "${{ values.service_name }}"
+    deployFromFeature: ${{ parameters.deployFromFeature }}
+    appBuildConfig:
+      appFrameworkType: "dotnet"
+      frameworkVersion: "8.x"    
+      projectPath: "./src/${{ values.dotnet_solution_name }}.Api/${{ values.dotnet_solution_name }}.Api.csproj"
+      testProjectPath: "**/*.Tests.csproj" 
+      manifestPath: "./src/obj/${{ values.dotnet_solution_name }}.Api/project.assets.json;./src/obj/${{ values.dotnet_solution_name }}.Core/project.assets.json"
+      imageRepoName: "${{ values.service_name }}"
+    appTestConfig:
+      testFilePath: ""
+    appDeployConfig:
+      filepath: "./appConfig"
+      filetype: "yaml" 
+      # variableGroups: 
+      #   - ${{ values.service_name }}-<environment> 

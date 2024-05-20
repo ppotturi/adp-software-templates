@@ -1,0 +1,12 @@
+# This override file should be used when running this service in isolation
+# to provide required sibling services for local testing
+
+services:
+  ${{ values.service_name }}:
+    build:
+      target: development
+    ports:
+      - "3007:3007"
+    volumes:
+      - ./src/${{ values.dotnet_solution_name }}.Api:/home/dotnet/src/${{ values.dotnet_solution_name }}.Api
+      - ./src/${{ values.dotnet_solution_name }}.Core:/home/dotnet/src/${{ values.dotnet_solution_name }}.Core

@@ -1,0 +1,24 @@
+services:
+  ${{ values.service_name }}-core-tests:
+    build:
+      target: development
+    image: ${{ values.service_name }}-core-tests-development
+    container_name: ${{ values.service_name }}-core-tests
+    user: root
+    entrypoint: sh -c "cd /home/dotnet && chown -R dotnet:dotnet . && su dotnet -c 'dotnet watch --project test/${{ values.dotnet_solution_name }}.Core.Tests/${{ values.dotnet_solution_name }}.Core.Tests.csproj test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./test-output/'"
+    volumes:
+      - ./src/${{ values.dotnet_solution_name }}.Core:/home/dotnet/src/${{ values.dotnet_solution_name }}.Core
+      - ./test/${{ values.dotnet_solution_name }}.Core.Tests:/home/dotnet/test/${{ values.dotnet_solution_name }}.Core.Tests
+      - ./test-output:/home/dotnet/${{ values.dotnet_solution_name }}.Core.Tests/test-output
+
+  ${{ values.service_name }}-api-tests:
+    build:
+      target: development
+    image: ${{ values.service_name }}-api-tests-development
+    container_name: ${{ values.service_name }}-api-tests
+    user: root
+    entrypoint: sh -c "cd /home/dotnet && chown -R dotnet:dotnet . && su dotnet -c 'dotnet watch --project test/${{ values.dotnet_solution_name }}.Api.Tests/${{ values.dotnet_solution_name }}.Api.Tests.csproj test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./test-output/'"
+    volumes:
+      - ./src/${{ values.dotnet_solution_name }}.Api:/home/dotnet/src/${{ values.dotnet_solution_name }}.Api
+      - ./test/${{ values.dotnet_solution_name }}.Api.Tests:/home/dotnet/test/${{ values.dotnet_solution_name }}.Api.Tests
+      - ./test-output:/home/dotnet/${{ values.dotnet_solution_name }}.Api.Tests/test-output
