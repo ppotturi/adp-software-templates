@@ -76,50 +76,9 @@ spec:
           default: /
           pattern: ^\/.*$
 
-    - title: Git Repository
-      description: |
-        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+    - $yaml: ../parameters/git-repository.yaml
 
-        The scaffolder will create a new repository and an associated team with write permissions.
-      required:
-        - repo_url
-      properties:
-        repo_url:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
-            allowedOwners:
-              - defra
-              - defra-adp-sandpit
-
-    - title: CI/CD
-      description: CI/CD pipelines will be created in Azure DevOps
-      required:
-        - ado_organization
-        - ado_project
-        - service_connection_name
-        - pipeline_folder
-      properties:
-        ado_organization:
-          title: Azure DevOps Organization
-          type: string
-          default: defragovuk
-        ado_project:
-          title: Azure DevOps Project
-          type: string
-        service_connection_name:
-          title: Service Connection Name
-          type: string
-          description: Name of the Service Connection used to connect to GitHub.
-          default: DEFRA
-        pipeline_folder:
-          title: Pipeline Folder
-          type: string
-          description: Folder path where the pipeline will be created
-          default: /
+    - $yaml: ../parameters/ci-cd.yaml
 
   steps:
     - id: template
@@ -142,31 +101,9 @@ spec:
           endpoint: ${{ parameters.endpoint }}
           default_path: ${{ parameters.defaultPath if parameters.defaultPath else "" }}
 
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ["github.com"]
-        description: ${{ parameters.description }}
-        repoUrl: ${{ parameters.repo_url }}
-        requireCodeOwnerReviews: true
-        dismissStaleReviews: true
-        requiredConversationResolution: true
-        requiredStatusCheckContexts: []
-        repoVisibility: public
-        defaultBranch: main
-        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
-        gitAuthorName: ${{ user.entity.metadata.name }}
-        requiredCommitSigning: true
+    - $yaml: ../steps/github-publish.yaml
 
-    - id: addGitHubTeam
-      name: Add GitHub Teams to Repository
-      action: adp:github:team:add:deliveryproject
-      input:
-        projectName: ${{ parameters.owner | parseEntityRef | pick('name') }}
-        repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
-        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
-        owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+    - $yaml: ../steps/github-team.yaml
 
     - id: registerFluxService
       name: Register Service in Flux config
@@ -189,155 +126,21 @@ spec:
           configVariables:
             INGRESS_ENDPOINT: ${{ parameters.endpoint }}
 
-    - id: generateServiceManifests
-      name: Generate Service (Flux) Manifests
-      action: adp:generateServiceManifests
-      input:
-        parameters:
-          teamName: ${{ parameters.owner | parseEntityRef | pick('name') }}
-          serviceName: ${{ parameters.component_id }}
+    - $yaml: ../steps/generate-service-manifests.yaml
 
-    - id: configureAdoProject
-      name: Configure Azure DevOps Project
-      action: adp:configureAdoProject
-      input:
-        parameters:
-          adoProject: ${{ parameters.ado_project }}
-        body:
-          environments:
-            - name: SND3
-              description: SND3 environment
-            - name: SND4
-              description: SND4 environment
-            - name: DEV1
-              description: DEV1 environment
-            - name: TST1
-              description: TST1 environment
-            - name: TST2
-              description: TST2 environment
-            - name: PRE1
-              description: PRE1 environment
-            - name: PRD1
-              description: PRD1 environment
-          serviceConnections:
-            - AZD-ADP-SND3
-            - AZR-ADP-SND4
-            - AZD-ADP-SSV3
-            - AZD-ADP-SSV5
-            - AZR-ADP-DEV1
-            - AZR-ADP-TST1
-            - AZR-ADP-PRE1
-            - AZR-ADP-PRD1
-            - AZD-ADP-SNYK
-            - Defra-ADP-Github
-            - DEFRA-ADP-SonarCloud
-            - DEFRA
-          agentPools:
-            - DEFRA-ADP-SND3-ubuntu2204
-            - DEFRA-ADP-SND4-ubuntu2204
-            - DEFRA-ADP-DEV1-ubuntu2204
-            - DEFRA-ADP-TST1-ubuntu2204
-            - DEFRA-ADP-PRE1-ubuntu2204
-            - DEFRA-ADP-PRD1-ubuntu2204
-          variableGroups:
-            - name: ${{ parameters.component_id }}-snd3
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-snd4
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-dev1
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-tst1
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-tst2
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-pre1
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-prd1
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
+    - $yaml: ../steps/ado-configure.yaml
 
-    - id: logConfigureAdoProjectReponse
-      name: Log Azure DevOps Project Configuration
-      action: debug:log
-      input:
-        message: |
-          Response Code: ${{ steps.configureAdoProject.output.code }}
-          Response: ${{ steps.configureAdoProject.output.body | dump }}
+    - $yaml: ../steps/ado-log-configure.yaml
 
-    - id: getServiceConnection
-      name: Get ADO Service Connection
-      action: adp:azure:serviceconnection:get
-      if: ${{ steps.configureAdoProject.output.code == 200 }}
-      input:
-        organization: ${{ parameters.ado_organization }}
-        project: ${{ parameters.ado_project }}
-        serviceConnectionName: ${{ parameters.service_connection_name }}
+    - $yaml: ../steps/ado-get-service-connection.yaml
 
-    - id: createPipeline
-      name: Create CI Pipeline
-      action: adp:azure:pipeline:create
-      if: ${{ steps.configureAdoProject.output.code == 200 }}
-      input:
-        organization: ${{ parameters.ado_organization }}
-        project: ${{ parameters.ado_project }}
-        folder: ${{ parameters.pipeline_folder }}
-        repositoryName: ${{ parameters.repo_url | projectSlug }}
-        yamlPath: .azuredevops/ingress-helm-publish.yaml
-        serviceConnectionId: ${{ steps.getServiceConnection.output.serviceConnectionId }}
-        pipelineName: ${{ parameters.component_id }}
+    - $yaml: ../steps/ado-create-pipeline.yaml
 
-    - id: permitResources
-      name: Permit Pipeline Resources
-      action: adp:azure:pipeline:permit
-      if: ${{ steps.configureAdoProject.output.code == 200 }}
-      input:
-        organization: ${{ parameters.ado_organization }}
-        project: ${{ parameters.ado_project }}
-        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
-        resources: ${{ steps.configureAdoProject.output.body }}
+    - $yaml: ../steps/ado-permit-resources.yaml
 
-    - id: runPipeline
-      name: Run CI Pipeline
-      action: adp:azure:pipeline:run
-      if: ${{ steps.configureAdoProject.output.code == 200 }}
-      input:
-        organization: ${{ parameters.ado_organization }}
-        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
-        project: ${{ parameters.ado_project }}
+    - $yaml: ../steps/ado-run-pipeline.yaml
 
-    - id: register
-      name: Register
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: "/catalog-info.yaml"
+    - $yaml: ../steps/catalog-register.yaml
 
   output:
     links:

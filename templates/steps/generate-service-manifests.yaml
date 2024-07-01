@@ -1,0 +1,7 @@
+id: generateServiceManifests
+name: Generate Service (Flux) Manifests
+action: adp:generateServiceManifests
+input:
+  parameters:
+    teamName: ${{ parameters.owner | parseEntityRef | pick('name') }}
+    serviceName: ${{ parameters.component_id }}
